@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: #faf8f5;
+    --surface-primary: #ffffff;
+    --surface-secondary: #f5f1eb;
+    --border-subtle: #e7e5e4;
+    --text-primary: #1c1917;
+    --text-secondary: #78716c;
+    --accent-primary: #2c5649;
+  }
+
+  .dark {
+    --bg-main: #121316;
+    --surface-primary: #1a1c21;
+    --surface-secondary: #22242a;
+    --border-subtle: #2d3139;
+    --text-primary: #f4f4f5;
+    --text-secondary: #a1a1aa;
+    --accent-primary: #488771;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+  }
+
+  h1, h2, h3, .font-heading {
+    letter-spacing: -0.015em;
+  }
+}
+
+@layer components {
+  /* Search input styling ensuring high contrast and theme consistency across all browsers */
+  .search-input {
+    background-color: var(--surface-primary);
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
+  }
+
+  .dark .search-input {
+    background-color: var(--surface-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
+  }
+
+  .search-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 1;
+  }
+
+  /* Browser autofill theme fix */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-primary);
+    -webkit-box-shadow: 0 0 0px 1000px var(--surface-secondary) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(140, 140, 140, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 140, 140, 0.4);
+}
+
+/* Focus styles for keyboard accessibility */
+:focus-visible {
+  outline: 2px solid #356c5a;
+  outline-offset: 2px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
